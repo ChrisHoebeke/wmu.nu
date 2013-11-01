@@ -1,0 +1,28 @@
+
+/*.navbar-brand {
+  font-size: 28px;
+}*/
+
+.navbar-header { width: 100%; }
+
+/*div.schedule { 
+  width: 1600px;
+  font-size: 45px;
+  }*/
+
+/*.reveal .slides {
+  left: 35%;
+}
+ */
+
+/*#main { 
+  margin-top: 60px;
+  
+}*/
+
+#buses { 
+  position: relative;
+ }
+.schedule h1 { font-size: 60px; margin: 60px 0; }
+#calendar { font-size: 36px; }
+#calendar td { padding: 30px 0;}

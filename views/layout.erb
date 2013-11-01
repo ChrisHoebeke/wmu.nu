@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Worldmaritime University</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="/vendor/bootstrap/css/bootstrap.min.css">
+    <!-- REVEAL -->
+    
+    <link rel="stylesheet" href="/vendor/reveal/css/reveal.css">
+
+
+    <link rel="stylesheet" href="/site.css">
+    <link rel="stylesheet" href="/clock.css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+   <header class="navbar navbar-inverse navbar-fixed-top bs-docs-nav" role="banner">
+     <div class="container">
+       <div class="navbar-header">
+         <a href="../" class="navbar-brand"><%= Date::DAYNAMES[Time.now.wday] %> <%= Date::MONTHNAMES[Time.now.month] %> <%= Time.now.day %>, <%= Time.now.year %>  Week: <%= Time.now.strftime('%U') %> </a>
+
+     	<div id="clock" class="dark">
+   			<div class="display">
+   				<div class="digits"></div>
+   			</div>
+   		</div>
+       </div>
+
+
+     </div>
+   </header>
+   <%= yield %> 
+  
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+		<script src="http://cdnjs.cloudflare.com/ajax/libs/moment.js/2.0.0/moment.min.js"></script>
+    
+    <script src="vendor/reveal/js/head.min.js"></script>
+		<script src="/vendor/reveal/js/reveal.min.js"></script>
+    
+    <script src="/maritime.js"></script>
+    <script src="/clock.js"></script>
+    <script src="/schedule.js"></script>
+    <script src="/buses.js"></script>
+    
+    	<script>
+
+        Maritime.Schedule();
+        Maritime.Buses();
+        
+        setTimeout( function() { 
+  			  Reveal.initialize({
+    				controls: false,
+    				progress: true,
+    				history: true,
+    				center: false,
+    				loop: true,
+            autoSlide: 10000,
+    				transition: Reveal.getQueryHash().transition || 'concave', // default/cube/page/concave/zoom/linear/fade/none
+
+  		
+    			});
+  			}, 1000);
+
+  		</script>
+    
+
+  </body>
+</html>
+
+
