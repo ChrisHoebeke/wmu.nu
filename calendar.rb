@@ -65,8 +65,8 @@ configure do
   logger.level = Logger::DEBUG
   
   client = Google::APIClient.new
-  client.authorization.client_id = "233199329657-pn71m4h3fhj4tfd5m727mmbp2nn6pehk.apps.googleusercontent.com"
-  client.authorization.client_secret = "Jdo2nH7_qIy9RHwUGDZ6tosg"
+  client.authorization.client_id = "233199329657-2riv99asskssd6qp8v6d1298na30977s.apps.googleusercontent.com"
+  client.authorization.client_secret = "d9TfpdPLNTCq94eJT5v6_YjR"
   client.authorization.scope = 'https://www.googleapis.com/auth/calendar'
 
   calendar = client.discovered_api('calendar', 'v3')
@@ -127,7 +127,7 @@ get "/buses" do
     terminus = "#{l.search('./Towards').text}"
     time = l.search('./JourneyDateTime').text
     delay = l.search('.//DepTimeDeviation').text.to_i
-    result << { :line => line, :terminus => terminus, :time => time, :delay => delay}    
+    result << { :line => line, :terminus => terminus, :time => time, :delay => delay }    
   end
   
   [200 , {'Content-Type' => 'application/json'}, result.to_json ]
