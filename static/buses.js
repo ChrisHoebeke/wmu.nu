@@ -7,7 +7,6 @@
      
      var stopId = $('.present .buses').attr('data-id');
      var url = "/buses?stopId=" + stopId;
-     console.log(url)
      $.getJSON(  url, function( data ) {
        $.each( data, function( key, val ) {
           line = val.line;

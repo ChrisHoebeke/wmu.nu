@@ -97,6 +97,7 @@ get "/buses" do
   lines = xml.search("//Line")
   lines.each do |l|
     line = "#{l.search('./Name').text}"
+    # next unless  line == "3" or line == "32"
     terminus = "#{l.search('./Towards').text}"
     time = l.search('./JourneyDateTime').text
     delay = l.search('.//DepTimeDeviation').text.to_i
@@ -107,6 +108,14 @@ get "/buses" do
   
 end
 
+get "/cph" do
+  xml = Nokogiri::HTML(open('http://www.cph.dk/CPH/UK/MAIN/Flight+Timetables/International+Departures.htm'))
+  xml.search("//a").each { |n| n.remove }
+  xml.search(".//td[contains(text(), 'SMS')]").each { |n| n.remove } 
+  table = xml.search('//table')[3]
+  table["class"] = "table table-striped"
+  [200, { 'Content-Type' => 'text/html'}, table.to_html ]
+end
 
 
 get '/' do

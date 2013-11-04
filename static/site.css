@@ -20,6 +20,9 @@ div.schedule {
  padding-top: 20px;
 }
 
+#weather div.schedule {
+  padding-top: 50px;
+}
 
 .centered {
   position: fixed;

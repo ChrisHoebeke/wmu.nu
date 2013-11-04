@@ -31,7 +31,7 @@
  		<div id='spinner' class='centered'></div>
     
     <div class="slides">
-      <section id='campus' data-state='campus'>
+      <section id='campus' data-state='campus' data-time='<%= Chronic.parse("1 hour ago") %>'>
         <%= erb :header %>
         <%= erb :campus %>
       </section>
@@ -44,9 +44,25 @@
          <%= erb :buses, :locals => { :stopId => '80118', :stopName => 'Malmö Konserthuset'} %>
         </section>
        
+       <section id='cph' data-state='cph'>
+         <%= erb :header %>
+         <%= erb :cph %>
+        </section>
+       
+       
        <section id='weather' data-state='weather'>
          <%= erb :header %>
          <%= erb :weather %>
+        </section>
+        
+        <section id='facebook'>
+          <%= erb :header %>
+          <div class="schedule">
+           <h1>Join Us On Facebook!</h1>
+            <div id="weather-container">
+            <iframe src="//www.facebook.com/plugins/likebox.php?href=https%3A%2F%2Fwww.facebook.com%2Fpages%2FWorld-Maritime-University-headquarters%2F342526129176907&amp;width=600&amp;height=590&amp;colorscheme=light&amp;show_faces=true&amp;header=true&amp;stream=true&amp;show_border=true&amp;appId=134443340061776" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:600px; height:590px;" allowTransparency="true"></iframe>
+            </div>
+          </div>
         </section>
  
        
@@ -69,6 +85,7 @@
     <script src="/maritime.js"></script>
     <script src="/schedule.js"></script>
     <script src="/buses.js"></script>
+    <script src="/cph.js"></script>
     
     	<script>
 
@@ -81,12 +98,26 @@
           Maritime.Buses();
         }, false );
         
-         Reveal.addEventListener( 'hsr-bus', function() {
-            Maritime.Buses();
-          }, false );
+     Reveal.addEventListener( 'hsr-bus', function() {
+        Maritime.Buses();
+      }, false );
+
+      Reveal.addEventListener( 'cph', function() {
+         Maritime.Cph();
+       }, false );
+    
         
         
         
+        window.setInterval(function(){
+          if ( $('#cph table tr') > 20 ) {
+           $.each($('#cph table tr').slice(1,20) , function (i, item) {
+               $(item).fadeOut(250, function() { 
+                 this.remove();
+                })  
+           });
+         }
+        }, 5000);
         
         setTimeout( function() { 
   			  Reveal.initialize({
