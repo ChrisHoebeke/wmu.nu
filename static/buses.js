@@ -1,6 +1,14 @@
  (function() {
    Maritime.Buses = (function() {
-     $.getJSON( "/buses", function( data ) {
+     $('table.buses').hide();
+     $(".present table.buses tbody tr").remove();
+     var target = document.getElementById('spinner')
+     var spinner = new Spinner().spin(target);
+     
+     var stopId = $('.present .buses').attr('data-id');
+     var url = "/buses?stopId=" + stopId;
+     console.log(url)
+     $.getJSON(  url, function( data ) {
        $.each( data, function( key, val ) {
           line = val.line;
           terminus = val.terminus;
@@ -14,7 +22,9 @@
             status = "(Delayed " + delay + " minues)";             
           }
          status = arr + " " + status;
-         $("#buses tbody").append("<tr><td>" +  line + "</td><td>" + terminus + "</td><td>" + time.format('HH:mm') + "</td><td>" + status + "</td></tr>");
+         $(".present table.buses tbody").append("<tr><td>" +  line + "</td><td>" + terminus + "</td><td>" + time.format('HH:mm') + "</td><td>" + status + "</td></tr>");
+         $('.spinner').remove();
+         $('table.buses').show();
        });
      });
    });

@@ -21,22 +21,37 @@
     <![endif]-->
   </head>
   <body>
-   <header class="navbar navbar-inverse navbar-fixed-top bs-docs-nav" role="banner">
-     <div class="container">
-       <div class="navbar-header">
-         <a href="../" class="navbar-brand"><%= Date::DAYNAMES[Time.now.wday] %> <%= Date::MONTHNAMES[Time.now.month] %> <%= Time.now.day %>, <%= Time.now.year %>  Week: <%= Time.now.strftime('%U') %> </a>
-
-     	<div id="clock" class="dark">
-   			<div class="display">
-   				<div class="digits"></div>
-   			</div>
-   		</div>
-       </div>
-
-
-     </div>
-   </header>
-   <%= yield %> 
+  
+  <div class="reveal" id="main">
+    <div id="clock" class="dark">
+ 			<div class="display">
+ 				<div class="digits"></div>
+ 			</div>
+ 		</div>
+ 		<div id='spinner' class='centered'></div>
+    
+    <div class="slides">
+      <section id='campus' data-state='campus'>
+        <%= erb :header %>
+        <%= erb :campus %>
+      </section>
+       <section id='bus-campus' data-state='campus-bus'>
+        <%= erb :header %>
+        <%= erb :buses, :locals => { :stopId => '80022', :stopName => 'Malmö Tekniska Museet'} %>
+       </section>
+       <section id='bus-hsr' data-state='hsr-bus'>
+         <%= erb :header %>
+         <%= erb :buses, :locals => { :stopId => '80118', :stopName => 'Malmö Konserthuset'} %>
+        </section>
+       
+       <section id='weather' data-state='weather'>
+         <%= erb :header %>
+         <%= erb :weather %>
+        </section>
+ 
+       
+    </div>
+  </div>
   
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
@@ -46,32 +61,78 @@
     
     <script src="vendor/reveal/js/head.min.js"></script>
 		<script src="/vendor/reveal/js/reveal.min.js"></script>
+		<script src="/vendor/spin.min.js"></script>
+    
+    <script src="/clock.js"></script>
+    
     
     <script src="/maritime.js"></script>
-    <script src="/clock.js"></script>
     <script src="/schedule.js"></script>
     <script src="/buses.js"></script>
     
     	<script>
 
-        Maritime.Schedule();
-        Maritime.Buses();
+      Reveal.addEventListener( 'campus', function() {
+          Maritime.Schedule();
+      }, false );
+      
+      
+        Reveal.addEventListener( 'campus-bus', function() {
+          Maritime.Buses();
+        }, false );
+        
+         Reveal.addEventListener( 'hsr-bus', function() {
+            Maritime.Buses();
+          }, false );
+        
+        
+        
         
         setTimeout( function() { 
   			  Reveal.initialize({
+    				width: '100%',
+    				height: '100%',
     				controls: false,
-    				progress: true,
-    				history: true,
+    				progress: false,
+    				history: false,
     				center: false,
     				loop: true,
             autoSlide: 10000,
-    				transition: Reveal.getQueryHash().transition || 'concave', // default/cube/page/concave/zoom/linear/fade/none
+    				transition: Reveal.getQueryHash().transition || 'cube', // default/cube/page/concave/zoom/linear/fade/none
 
   		
     			});
+    			
+    			
+    
+    			
+    			
   			}, 1000);
+  			
+  	
+  	
+  
+
+        Reveal.addEventListener( 'slidechanged', function( event ) {
+          if ( $('.present header').hasClass("navbar-inverse") ) {
+              $('#clock').addClass('dark');
+      	       $('#clock').removeClass('light');
+    	    } else {
+             $('#clock').addClass('light');
+      	       $('#clock').removeClass('dark');
+          }
+        });
+
+        $('header').each(function( index ) {
+          index++;
+          if ( index % 2 == 0 ) {
+            $(this).removeClass('navbar-inverse');
+          }
+        });
+      
 
   		</script>
+
     
 
   </body>

@@ -3,13 +3,29 @@
   font-size: 28px;
 }*/
 
+.navbar { min-height: 54px;}
 .navbar-header { width: 100%; }
 
-/*div.schedule { 
-  width: 1600px;
-  font-size: 45px;
-  }*/
+.reveal.cube .slides section:not(.stack):before {
+  -webkit-transform: translateZ( 0px );
+  -moz-transform: translateZ( 0px );
+  -ms-transform: translateZ( 0px );
+  -o-transform: translateZ( 0px );
+  transform: translateZ( 0px );
+  
+  
+}
 
+div.schedule { 
+ padding-top: 20px;
+}
+
+
+.centered {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+}
 /*.reveal .slides {
   left: 35%;
 }
@@ -23,6 +39,5 @@
 #buses { 
   position: relative;
  }
-.schedule h1 { font-size: 60px; margin: 60px 0; }
 #calendar { font-size: 36px; }
 #calendar td { padding: 30px 0;}

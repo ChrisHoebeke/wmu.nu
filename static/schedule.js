@@ -1,6 +1,10 @@
  (function() {
    
    Maritime.Schedule = (function() {
+     $('#campus-events').hide();
+     $("#campus-events tbody tr").remove();
+     var target = document.getElementById('spinner')
+     var spinner = new Spinner().spin(target);
     $.getJSON( "/today", function( data ) {
       $.each( data, function( key, val ) {
         var stime = new Date(val.start.dateTime);
@@ -11,7 +15,9 @@
         
         var room = val.location.replace("Classrooms-", "");
         
-        $("#calendar tbody").append("<tr><td>" + startTime + " - " + endTime + "</td><td>" + val.summary + "</td><td>" +  room  + "</td></tr>");
+        $("#campus-events tbody").append("<tr><td>" + startTime + " - " + endTime + "</td><td>" + val.summary + "</td><td>" +  room  + "</td></tr>");
+        $('.spinner').remove();
+         $('#campus-events').show();
       });
     });
   });
