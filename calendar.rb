@@ -97,7 +97,7 @@ get "/buses" do
   lines = xml.search("//Line")
   lines.each do |l|
     line = "#{l.search('./Name').text}"
-    # next unless  line == "3" or line == "32"
+    next if  line.length > 2
     terminus = "#{l.search('./Towards').text}"
     time = l.search('./JourneyDateTime').text
     delay = l.search('.//DepTimeDeviation').text.to_i

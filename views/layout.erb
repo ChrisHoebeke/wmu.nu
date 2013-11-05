@@ -110,12 +110,10 @@
         
         
         window.setInterval(function(){
-          if ( $('#cph table tr') > 20 ) {
-           $.each($('#cph table tr').slice(1,20) , function (i, item) {
-               $(item).fadeOut(250, function() { 
-                 this.remove();
-                })  
-           });
+          if ( $('#cph table tr').length > 20 ) {
+            $('#cph table tr').slice(1,20).fadeOut(250, function() { 
+               this.remove();
+              });
          }
         }, 5000);
         
