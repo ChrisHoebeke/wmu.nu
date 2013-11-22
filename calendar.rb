@@ -163,6 +163,8 @@ get '/tz/europe' do
   txt = open('http://www.yr.no/tz/europe')
   txt
 end
+
+
 get '/' do
   erb :index
   # Fetch list of events on the user's default calandar

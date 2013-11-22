@@ -5,7 +5,7 @@
 
 
 #clock{
-  position: absolute;
+  position: fixed;
   right: 2%;
   z-index: 9999;
 }
