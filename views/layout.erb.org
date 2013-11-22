@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Worldmaritime University</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="/vendor/bootstrap/css/bootstrap.min.css">
+    <!-- REVEAL -->
+    
+    <link rel="stylesheet" href="/vendor/reveal/css/reveal.css">
+
+
+    <link rel="stylesheet" href="/site.css">
+    <link rel="stylesheet" href="/clock.css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+  
+  <div class="reveal" id="main">
+    <div id="clock" class="dark">
+ 			<div class="display">
+ 				<div class="digits"></div>
+ 			</div>
+ 		</div>
+ 		<div id='spinner' class='centered'></div>
+    
+    <div class="slides">
+      <section id='campus' data-state='campus' data-time='<%= Chronic.parse("1 hour ago") %>'>
+        <%= erb :header %>
+        <%= erb :campus %>
+      </section>
+       <section id='bus-campus' data-state='campus-bus'>
+        <%= erb :header %>
+        <%= erb :buses, :locals => { :stopId => '80022', :stopName => 'Malmö Tekniska Museet'} %>
+       </section>
+       <section id='bus-hsr' data-state='hsr-bus'>
+         <%= erb :header %>
+         <%= erb :buses, :locals => { :stopId => '80118', :stopName => 'Malmö Konserthuset'} %>
+        </section>
+       
+       <section id='cph' data-state='cph'>
+         <%= erb :header %>
+         <%= erb :cph %>
+        </section>
+       
+       
+       <section id='weather' data-state='weather'>
+         <%= erb :header %>
+         <%= erb :weather %>
+        </section>
+        
+        <section id='facebook'>
+          <%= erb :header %>
+          <div class="schedule">
+           <h1>Join Us On Facebook!</h1>
+            <div id="weather-container">
+            <iframe src="//www.facebook.com/plugins/likebox.php?href=https%3A%2F%2Fwww.facebook.com%2Fpages%2FWorld-Maritime-University-headquarters%2F342526129176907&amp;width=600&amp;height=590&amp;colorscheme=light&amp;show_faces=true&amp;header=true&amp;stream=true&amp;show_border=true&amp;appId=134443340061776" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:600px; height:590px;" allowTransparency="true"></iframe>
+            </div>
+          </div>
+        </section>
+ 
+       
+    </div>
+  </div>
+  
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+		<script src="http://cdnjs.cloudflare.com/ajax/libs/moment.js/2.0.0/moment.min.js"></script>
+    
+    <script src="vendor/reveal/js/head.min.js"></script>
+		<script src="/vendor/reveal/js/reveal.min.js"></script>
+		<script src="/vendor/spin.min.js"></script>
+    
+    <script src="/clock.js"></script>
+    
+    
+    <script src="/maritime.js"></script>
+    <script src="/schedule.js"></script>
+    <script src="/buses.js"></script>
+    <script src="/cph.js"></script>
+    
+    	<script>
+  
+    	Maritime.Schedule();
+    	Maritime.Cph();
+      
+      var counter = 0;
+      Reveal.addEventListener( 'campus', function() {
+          if (counter > 4 ) {  location.reload(); }
+          counter++;
+      //    Maritime.Schedule();
+      }, false );
+      
+      
+        Reveal.addEventListener( 'campus-bus', function() {
+         Maritime.Buses();
+        }, false );
+        
+     Reveal.addEventListener( 'hsr-bus', function() {
+        Maritime.Buses();
+      }, false );
+
+      Reveal.addEventListener( 'cph', function() {
+        // Maritime.Cph();
+       }, false );
+    
+        
+        
+        
+        window.setInterval(function(){
+          if ( $('#cph table tr').length > 20 ) {
+            $('#cph table tr').slice(1,20).fadeOut(250, function() { 
+               this.remove();
+              });
+         }
+        }, 5000);
+        
+        setTimeout( function() { 
+  			  Reveal.initialize({
+    				width: '100%',
+    				height: '100%',
+    				controls: false,
+    				progress: false,
+    				history: false,
+    				center: false,
+    				loop: true,
+            autoSlide: 10000,
+    				transition: Reveal.getQueryHash().transition || 'cube', // default/cube/page/concave/zoom/linear/fade/none
+
+  		
+    			});
+    			
+    			
+    
+    			
+    			
+  			}, 1000);
+  			
+  	
+  	
+  
+
+        Reveal.addEventListener( 'slidechanged', function( event ) {
+          if ( $('.present header').hasClass("navbar-inverse") ) {
+              $('#clock').addClass('dark');
+      	       $('#clock').removeClass('light');
+    	    } else {
+             $('#clock').addClass('light');
+      	       $('#clock').removeClass('dark');
+          }
+        });
+
+        $('header').each(function( index ) {
+          index++;
+          if ( index % 2 == 0 ) {
+            $(this).removeClass('navbar-inverse');
+          }
+        });
+      
+
+  		</script>
+
+    
+
+  </body>
+</html>
+
+

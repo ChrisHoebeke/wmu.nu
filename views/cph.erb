@@ -1,4 +1,18 @@
 <div class="cph schedule" >
-<h1>CPH International Depatures</h1>
-<div class='cph-spinner centered'></div>
+  <h1>CPH International Depatures <small>Last Updated: <%= Time.now.strftime('%H:%M') %> </small></h1>
+<%= table.to_html %>
 </div>
+<script>
+  jQuery(function($) { $('#cph').addClass('active'); });
+
+  <% if activate %>
+  window.setInterval(function(){                                                                       
+    if ( $('table tr').length > 20 ) {                                                            
+                  $('table tr').slice(1,5).fadeOut(1000, function() {                                         
+                       this.remove();                                                                                
+                      });                                                                                            
+                }                                                                                                   
+             }, 7000);
+           
+   <% end %>           
+</script>

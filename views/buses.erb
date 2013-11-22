@@ -1,5 +1,5 @@
-<div class="buses schedule" data-id="<%= stopId %>">
-<h1>Bus Stop: <%= stopName %></h1>
+<div class="buses schedule" >
+  <h1>Bus Stop: <%= stopName %> <small>Last Updated: <%= Time.now.strftime('%H:%M') %></small></h1>
 <div class='bus-spinner centered'></div>
 <table  class="buses table table-striped">
         <thead>
@@ -11,7 +11,18 @@
           </tr>
         </thead>
         <tbody>
-         
+          <% for bus in  buses %>
+            <tr>
+              <td><%= bus[:line] %></td>
+              <td><%= bus[:terminus] %></td>
+              <td><%= DateTime.parse(bus[:time]).strftime('%H:%M') %></td>
+              <td><%= bus[:status] %></td>
+            
+            </tr>
+          <% end %>
         </tbody>
       </table>
 </div>
+<script>
+  jQuery(function($) { $('#<%= stopId %>').addClass('active'); });
+</script>

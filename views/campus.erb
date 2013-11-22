@@ -1,5 +1,5 @@
 <div class="schedule">
-  <h1>Today's Campus Events</h1>
+  <h1>Today's Campus Events <small>Last Updated: <%= Time.now.strftime('%H:%M') %></small></h1>
   <table id='campus-events' class="table table-striped">
         <thead>
           <tr>
@@ -9,6 +9,16 @@
           </tr>
         </thead>
         <tbody>     
+           <% for event in events %>
+             <tr> 
+               <td><%= event.start.date_time.strftime('%H:%M')%> - <%= event.end.date_time.strftime('%H:%M')%></td>
+               <td><%= event.summary %></td>
+               <td><%= event.location %></td>
+             </tr>
+        <% end %>
         </tbody>
     </table>
 </div>
+<script>
+  jQuery(function($) { $('#campusItem').addClass('active'); });
+</script>

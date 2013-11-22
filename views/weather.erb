@@ -1,5 +1,32 @@
-<div class="schedule">
-  <div id="weather-container">
-    <iframe id="forecast_embed" type="text/html" frameborder="0" height="400" width="100%" src="http://forecast.io/embed/#lat=55.6000&lon=-13.0000&name=Malmö&units=uk"> </iframe>
-  </div>
+
+<link rel="stylesheet" media="screen, print, projection" href="/yr.min.css">
+
+<script src="http://l.lp4.io/app/4f/88/0b/4f880be1d9d93e1b43000000.js"></script>
+
+
+<script src="http://www.yr.no/Scripts/yr.min.versjonert.Ceyg6rF8wBAfvZZpDDA9PgoELRI.js"></script>
+<script>yr.kontekst={"spraak":{"kode":"eng","desimalskille":"."},"approt":""};</script>
+<script src="http://www.yr.no/Scripts/yr.bruker.historikk.min.versjonert.KeX91NzVDJjdekJfdVmfXDFv96I.js"></script>
+<script src="http://www.yr.no/Scripts/OpenLayers-2.13.1/OpenLayers.versjonert.Ulxy8mi6VtIwvn4Nj_1vWnfQN7M.js" ></script>
+<script src='http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.5.2/underscore-min.js' ></script>
+
+
+<script>
+
+          yr.mapContext = [{"lang":"eng","timezone":"Europe/Stockholm","timezoneName":"Sweden","dom":"map","zoom":6,"activeLayer":"nedbør","staticMap":true,"mode":"Point","globalID":"PunktUtlandet:2692969","timeSliderType":0,"metWmsServer":"http://public-wms.met.no/verportal/verportal.map","lat":55.60587,"lon":13.00073,"projections":{"3575":{"name":"N.-Europe","timeSliderType":0,"layers":[{"id":"precipitation_1h_regional","basemap":"BASEMAP","singleTile":false}],"options":{"numZoomLevels":9}}}}];
+
+                  yr.kontekst={"spraak":{"kode":"eng","desimalskille":"."},"approt":""};
+
+</script>
+
+<script src="http://www.yr.no/Scripts/yr.map.versjonert.CLDbQxGjZTg5uGKI8o4buR8RM8A.js"></script>
+
+<div class="cph schedule" >
+  <h1>Malmö Weather <small>Last Updated: <%= Time.now.strftime('%H:%M') %> see more at <a href='http://www.yr.no/place/Sweden/Scania/Malm%C3%B6/'>yr.no</a> </small></h1>
+  
+  <%= forcast.to_html %>
+<%= map.to_html %>
 </div>
+<script>
+  jQuery(function($) { $('#weather').addClass('active'); });
+</script>
