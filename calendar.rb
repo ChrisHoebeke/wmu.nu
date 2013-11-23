@@ -78,7 +78,9 @@ get "/campus/today" do
   yesterday = Chronic.parse("yesterday at midnight" ).to_datetime.to_s
   today = Chronic.parse("today at midnight" ).to_datetime.to_s
   status, result = get_events(yesterday, today)
-  erb :campus, :locals => { :events => result[DateTime.now.wday] }
+  events = result[DateTime.now.wday]
+  events ||= []
+  erb :campus, :locals => { :events => events }
 end
 
 get "/buses" do
