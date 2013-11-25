@@ -5,15 +5,15 @@ worker_processes (rails_env == 'production' ? 6 : 3)
 preload_app true
 # # Restart any workers that haven't responded in 30 seconds
 timeout 30
-working_directory '/var/www/wmu.nu/current'
+working_directory '/var/www/current'
 #
 # # Listen on a Unix data socket
-listen "/var/www/wmu.nu/tmp/sockets/wmu.nu.sock", :backlog =>
+listen " /var/www/wmu.nu/tmp/sockets/wmu.nu.socket", :backlog =>
  2048
-stderr_path '/var/www/wmu.nu/shared/log/unicorn.log'
-stdout_path '/var/www/wmu.nu/shared/log/unicorn.log'
+stderr_path '/var/www/shared/log/unicorn.log'
+stdout_path '/var/www/shared/log/unicorn.log'
 before_exec do |server|
-   ENV["BUNDLE_GEMFILE"] = "/var/www/beacon.wmu.se/current/Gemfile"
+   ENV["BUNDLE_GEMFILE"] = "/var/www/current/Gemfile"
 end
 #
    before_fork do |server, worker|
@@ -32,7 +32,7 @@ end
 #                     #
 #                       # Using this method we get 0 downtime deploys.
 
-old_pid = '/var/www/beacon.wmu.se/shared/pids/unicorn.pid.oldbin'
+old_pid = '/var/www/shared/pids/unicorn.pid.oldbin'
 
 if File.exists?(old_pid) && server.pid != old_pid
    begin
