@@ -7,6 +7,7 @@ gem 'i18n'
 gem 'active_support'
 gem 'chronic'
 gem 'nokogiri'
+gem 'capistrano'
 group :production do
     gem "unicorn"
 end
