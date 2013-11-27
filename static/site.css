@@ -1,4 +1,5 @@
+.table { font-size: 22px; }
 .navbar { padding: 2px 0; }
-.button-nav li { width: 180px; margin: 0 2px; } 
+.button-nav li { width: 200px; margin: 0 2px; } 
 header { min-height: 100px; } 
 .index h1 { text-align: center; } 

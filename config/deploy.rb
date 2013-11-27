@@ -1,5 +1,5 @@
 set :application, 'wmu.nu'
-set :repo_url, '.'
+set :repo_url, 'https://github.com/cfitz/wmu.nu'
 
 # ask :branch, proc { `git rev-parse --abbrev-ref HEAD`.chomp }
 
@@ -9,7 +9,7 @@ set :repo_url, '.'
 # set :format, :pretty
 # set :log_level, :debug
 # set :pty, true
-
+set :linked_files, %w{541ea7336d9c8e88ff7f0d9b08ca55f4e06bd6ab-privatekey.p12}
 # set :linked_files, %w{config/database.yml}
 # set :linked_dirs, %w{bin log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system}
 
@@ -21,8 +21,7 @@ namespace :deploy do
   desc 'Restart application'
   task :restart do
     on roles(:app), in: :sequence, wait: 5 do
-      # Your restart mechanism here, for example:
-      # execute :touch, release_path.join('tmp/restart.txt')
+     execute :sv, " 2 /home/app/service/app" 
     end
   end
 
