@@ -38,6 +38,9 @@ def get_events( startDate, endDate )
     response = client.execute(:api_method => calendar.events.list, :parameters => params ) #, :authorization => user_credentials)
     next if response.status != 200
     response.data['items'].each do |item|
+      puts item.inspect
+      day = item['start']['dateTime']
+      day ||= DateTime.now 
       day = item["start"]["dateTime"].wday
       result[day] ||= []
       result[day] << item
