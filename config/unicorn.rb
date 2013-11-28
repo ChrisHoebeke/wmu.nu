@@ -8,7 +8,7 @@ timeout 30
 working_directory '/var/www/current'
 #
 # # Listen on a Unix data socket
-listen "/var/www/wmu.nu/tmp/sockets/wmu.nu.socket", :backlog =>
+listen "/var/www/wmu.nu/tmp/sockets/wmu.nu.sock", :backlog =>
  2048
 stderr_path '/var/www/shared/log/unicorn.log'
 stdout_path '/var/www/shared/log/unicorn.log'
