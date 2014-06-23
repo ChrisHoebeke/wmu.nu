@@ -1,8 +1,6 @@
 GEM
   remote: https://rubygems.org/
   specs:
-    active_support (3.0.0)
-      activesupport (= 3.0.0)
     activesupport (3.0.0)
     addressable (2.3.5)
     autoparse (0.3.3)
@@ -29,6 +27,7 @@ GEM
       signet (~> 0.4.5)
       uuidtools (>= 2.1.0)
     i18n (0.6.5)
+    json (1.8.1)
     jwt (0.1.8)
       multi_json (>= 1.5)
     kgio (2.8.1)
@@ -76,12 +75,13 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  active_support
+  activesupport
   capistrano
   chronic
   dalli
   google-api-client (>= 0.6)
   i18n
+  json
   nokogiri
   rack-cache
   sinatra (>= 1.3)

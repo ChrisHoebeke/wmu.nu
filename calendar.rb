@@ -8,6 +8,7 @@ require 'i18n'
 require 'active_support/core_ext'
 require 'google/api_client'
 require 'json'
+require 'rss'
 require 'logger'
 require 'open-uri'
 
@@ -145,6 +146,12 @@ end
 get '/facebook' do
   cache_control :public, max_age: 3600  # 30 mins.
   erb :facebook
+end
+
+get '/news' do
+  cache_control :public, max_age: 3600
+  feed = RSS::Parser.parse('http://www.google.com/alerts/feeds/12577570630029770063/7371890955262372138') 
+  erb :news, :locals => { :items => feed.items }
 end
 
 get '/kart/*' do

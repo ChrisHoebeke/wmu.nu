@@ -1,0 +1,19 @@
+<div class="buses schedule" >
+  <h1>Maritime News <small>Last Updated: <%= Time.now.strftime('%H:%M') %></small></h1>
+<div class='bus-spinner centered'></div>
+<table  class="buses table table-striped">
+        <tbody>
+          <% for item in items %>
+            <tr>
+              <td>
+                <div class="hero-unit">
+                  <h1><a href='<%= item.link.href %>'><%= item.title.content.gsub("<b>","").gsub("</b>", '') %></a></h1>
+                  <p><%= item.content.content.gsub("<b>","").gsub("</b>", '') %></p>
+                  <p><%= item.published %></p> 
+                </div>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+</div>
