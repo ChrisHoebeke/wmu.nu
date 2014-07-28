@@ -150,7 +150,7 @@ end
 
 get '/news' do
   cache_control :public, max_age: 3600
-  feed = RSS::Parser.parse('http://www.google.com/alerts/feeds/12577570630029770063/7371890955262372138') 
+  feed = RSS::Parser.parse('http://feeds.feedburner.com/worldmaritimenews/Ltoh?format=xml') 
   erb :news, :locals => { :items => feed.items }
 end
 
